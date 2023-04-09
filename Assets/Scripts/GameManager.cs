@@ -8,7 +8,16 @@ using UnityEngine.InputSystem;
 
 public class GameManager : InstancedBehaviour<GameManager>
 {
-    
+    protected override void Awake()
+    {
+        // Call the InstancedBehaviour declaration method
+        base.Awake();
+        
+        // Mark this object so it doesn't get destroyed when switching scenes
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+
     #region InputSystem
 
     /// <summary>
