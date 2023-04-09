@@ -61,3 +61,5 @@ crashlytics-build.properties
 # Jetbrains related folders
 .idea/
 
+Recordings/
+

@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Helpers;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : InstancedBehaviour<Player>
 {
     // Player's movement speed
     [SerializeField] private float moveSpeed = 6f;
@@ -27,8 +28,8 @@ public class Player : MonoBehaviour
     
     private LookingDirection _direction;
     
-    private const string MoveRight = "MoveRight";
-    private const string MoveLeft = "MoveLeft";
+    private const string MoveRight = "MovingRight";
+    private const string MoveLeft = "MovingLeft";
     private const string MoveUp = "MovingUp";
     private const string MoveDown = "MovingDown";
     
@@ -77,47 +78,33 @@ public class Player : MonoBehaviour
         _rb2d.MovePosition(_rb2d.position +
                            _movement * moveSpeed * Time.deltaTime);
 
+        _animator.SetBool(Right, false);
+        _animator.SetBool(Left, false);
+        _animator.SetBool(Up, false);
+        _animator.SetBool(Down, false);
+        
         if (_movement != Vector2.zero)
         {
             if (_movement.x > 0f)
             {
                 _animator.SetBool(Right, true);
-                _animator.SetBool(Left, false);
-                _animator.SetBool(Up, false);
-                _animator.SetBool(Down, false);
                 _direction = LookingDirection.Right;
             }
             else if (_movement.x < 0f)
             {
-                _animator.SetBool(Right, false);
                 _animator.SetBool(Left, true);
-                _animator.SetBool(Up, false);
-                _animator.SetBool(Down, false);
                 _direction = LookingDirection.Left;
             }
             else if (_movement.y > 0f)
             {
-                _animator.SetBool(Right, false);
-                _animator.SetBool(Left, false);
                 _animator.SetBool(Up, true);
-                _animator.SetBool(Down, false);
                 _direction = LookingDirection.Up;
             }
             else if (_movement.y < 0f)
             {
-                _animator.SetBool(Right, false);
-                _animator.SetBool(Left, false);
-                _animator.SetBool(Up, false);
                 _animator.SetBool(Down, true);
                 _direction = LookingDirection.Down;
             }
-        }
-        else
-        {
-            _animator.SetBool(Right, false);
-            _animator.SetBool(Left, false);
-            _animator.SetBool(Up, false);
-            _animator.SetBool(Down, false);
         }
     }
 }
