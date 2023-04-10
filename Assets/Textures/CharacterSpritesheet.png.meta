@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -5560,20 +5560,20 @@ TextureImporter:
       CharacterSpritesheet_176: 1297374169
       CharacterSpritesheet_109: 1852376132
       CharacterSpritesheet_212: -931337075
-      CharacterSpritesheet_4: 879673600
+      CharacterSpritesheet_131: -1640553662
       CharacterSpritesheet_34: -1547152046
       CharacterSpritesheet_246: -2138843719
       CharacterSpritesheet_25: -1923525959
-      CharacterSpritesheet_131: -1640553662
+      CharacterSpritesheet_4: 879673600
       CharacterSpritesheet_23: -124943508
       CharacterSpritesheet_30: 1232809112
-      CharacterSpritesheet_103: 331099128
       CharacterSpritesheet_163: 2004419710
-      CharacterSpritesheet_197: -650537913
+      CharacterSpritesheet_103: 331099128
       CharacterSpritesheet_253: -1211499172
-      CharacterSpritesheet_203: 1872283534
+      CharacterSpritesheet_197: -650537913
       CharacterSpritesheet_240: -13675231
       CharacterSpritesheet_85: 1041307176
+      CharacterSpritesheet_203: 1872283534
       CharacterSpritesheet_24: -41521245
       CharacterSpritesheet_99: 1941634047
       CharacterSpritesheet_28: -602452469
@@ -5591,15 +5591,15 @@ TextureImporter:
       CharacterSpritesheet_161: -1609078920
       CharacterSpritesheet_138: 1974917280
       CharacterSpritesheet_37: -2061902402
-      CharacterSpritesheet_47: 2099758773
-      CharacterSpritesheet_129: 447213684
-      CharacterSpritesheet_6: -1812892239
       CharacterSpritesheet_230: 1550789059
+      CharacterSpritesheet_129: 447213684
       CharacterSpritesheet_168: -1424031887
+      CharacterSpritesheet_6: -1812892239
       CharacterSpritesheet_196: 2141252164
+      CharacterSpritesheet_242: 2637332
       CharacterSpritesheet_227: 1582206122
       CharacterSpritesheet_160: 1561214383
-      CharacterSpritesheet_242: 2637332
+      CharacterSpritesheet_47: 2099758773
       CharacterSpritesheet_19: 547989861
       CharacterSpritesheet_156: -1917513157
       CharacterSpritesheet_32: 1753211779
@@ -5643,17 +5643,17 @@ TextureImporter:
       CharacterSpritesheet_16: 980894084
       CharacterSpritesheet_3: 662564838
       CharacterSpritesheet_45: -1962875021
-      CharacterSpritesheet_172: -62048552
+      CharacterSpritesheet_236: 312284778
+      CharacterSpritesheet_127: -2045887561
       CharacterSpritesheet_114: -1116758973
-      CharacterSpritesheet_90: -1874483557
-      CharacterSpritesheet_108: 2116480284
+      CharacterSpritesheet_172: -62048552
       CharacterSpritesheet_88: 415246109
+      CharacterSpritesheet_90: -1874483557
       CharacterSpritesheet_111: -1145586410
       CharacterSpritesheet_93: 1318400769
-      CharacterSpritesheet_127: -2045887561
       CharacterSpritesheet_102: -99912424
       CharacterSpritesheet_255: -295164863
-      CharacterSpritesheet_236: 312284778
+      CharacterSpritesheet_108: 2116480284
       CharacterSpritesheet_213: 1537336135
       CharacterSpritesheet_11: -386379131
       CharacterSpritesheet_175: -1334936951
@@ -5665,8 +5665,8 @@ TextureImporter:
       CharacterSpritesheet_135: 1539413035
       CharacterSpritesheet_14: 1234614627
       CharacterSpritesheet_100: -606925786
-      CharacterSpritesheet_174: -1932167228
       CharacterSpritesheet_194: 748037966
+      CharacterSpritesheet_174: -1932167228
       CharacterSpritesheet_62: -1138711385
       CharacterSpritesheet_41: -535922641
       CharacterSpritesheet_5: 2020582710
@@ -5683,26 +5683,26 @@ TextureImporter:
       CharacterSpritesheet_139: 1064167578
       CharacterSpritesheet_183: 2049539590
       CharacterSpritesheet_179: -1879904102
-      CharacterSpritesheet_207: -1424375733
-      CharacterSpritesheet_188: -441952869
       CharacterSpritesheet_223: -1196765391
+      CharacterSpritesheet_188: -441952869
+      CharacterSpritesheet_207: -1424375733
       CharacterSpritesheet_84: -1559813670
       CharacterSpritesheet_12: 1031418736
       CharacterSpritesheet_31: 689336925
-      CharacterSpritesheet_15: 206843311
       CharacterSpritesheet_142: 1272906427
-      CharacterSpritesheet_147: 1228446762
+      CharacterSpritesheet_15: 206843311
       CharacterSpritesheet_148: 1415872573
-      CharacterSpritesheet_186: 5593035
+      CharacterSpritesheet_147: 1228446762
       CharacterSpritesheet_9: -1536688560
       CharacterSpritesheet_130: 1945091766
       CharacterSpritesheet_180: -2007529301
       CharacterSpritesheet_0: 1710806409
       CharacterSpritesheet_51: -795455719
-      CharacterSpritesheet_214: -579764549
+      CharacterSpritesheet_186: 5593035
       CharacterSpritesheet_177: 1981998353
-      CharacterSpritesheet_225: -1860420798
+      CharacterSpritesheet_214: -579764549
       CharacterSpritesheet_249: 203842997
+      CharacterSpritesheet_225: -1860420798
       CharacterSpritesheet_26: -850228762
       CharacterSpritesheet_55: -1436678145
       CharacterSpritesheet_70: 181303400
