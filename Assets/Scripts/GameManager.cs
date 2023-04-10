@@ -17,6 +17,14 @@ public class GameManager : InstancedBehaviour<GameManager>
         DontDestroyOnLoad(this.gameObject);
     }
 
+    #region Colors
+    public Color NormalHairColor = Color.clear;
+    public Color NormalClothesColor = Color.clear;
+    public Color NormalClothesShadowColor = Color.clear;
+    public List<Color> HairColors = new List<Color>();
+    public List<Color> ClothesColors = new List<Color>();
+    public List<Color> ClothesShadowsColors = new List<Color>();
+    #endregion
 
     #region InputSystem
 
