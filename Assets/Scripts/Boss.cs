@@ -13,9 +13,6 @@ public class Boss : InstancedBehaviour<Boss>
     public bool IsPlayerInRadius => (_radius != null) && _radius.isPlayerInRadius;
 
     #region PathFinding + Movement
-
-    [SerializeField] private List<GameObject> _targets = new List<GameObject>();
-
     private GameObject _target;
     private Vector2Int _targetPosition;
     private Vector2Int _currentPosition;
@@ -48,7 +45,9 @@ public class Boss : InstancedBehaviour<Boss>
 
     private IEnumerator SetTargetPosition()
     {
-        _target = _targets.Where(x => x != _target).ToList().Random();
+        var targets = GenerateTargetList();
+        
+        _target = targets.Where(x => x != _target).ToList().Random();
         _targetPosition = (Vector2Int)TilemapManager.Instance.groundTilemap.WorldToCell(_target.transform.position);
 
         while (TilemapManager.Instance.groundNodes == null)
@@ -75,9 +74,40 @@ public class Boss : InstancedBehaviour<Boss>
 
     private void Start()
     {
-        _targets.Add(Player.Instance.gameObject);
-        _targets.AddRange(GameObject.FindGameObjectsWithTag("Employees"));
         StartCoroutine(SetTargetPosition());
         _currentPosition = (Vector2Int)TilemapManager.Instance.groundTilemap.WorldToCell(transform.position);
+    }
+
+    private List<GameObject> GenerateTargetList()
+    {
+        var targets = new List<GameObject>();
+        targets.AddRange(GameObject.FindGameObjectsWithTag("Employees"));
+
+        switch (GameManager.Instance.Suspicion)
+        {
+            case >=8:
+                // 50% chance to check on player next
+                targets.AddRange(GeneratePlayerChance(targets.Count() / 2));
+                break;
+            case >=5:
+                // 25% chance to check on player next
+                targets.AddRange(GeneratePlayerChance(targets.Count() / 4));
+                break;
+            default:
+                // Normal chance
+                targets.AddRange(GeneratePlayerChance(1));
+                break;
+        }
+
+        return targets;
+    }
+
+    private IEnumerable<GameObject> GeneratePlayerChance(int times)
+    {
+        var player = Player.Instance.gameObject;
+        for (int i = 0; i < times; i++)
+        {
+            yield return player;
+        }
     }
 }

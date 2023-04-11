@@ -17,6 +17,9 @@ public class GameManager : InstancedBehaviour<GameManager>
         DontDestroyOnLoad(this.gameObject);
     }
 
+    [Range(0,10)]
+    public int Suspicion = 0;
+    
     #region Colors
     public Color NormalHairColor = Color.clear;
     public Color NormalClothesColor = Color.clear;
