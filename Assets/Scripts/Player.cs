@@ -14,6 +14,15 @@ public class Player : InstancedBehaviour<Player>
     
     // The Player's Rigidbody 2D component
     private Rigidbody2D _rb2d;
+
+    /// <summary>
+    /// Total amount of money the player managed to steal
+    /// </summary>
+    public float Money = 0f;
+    /// <summary>
+    /// Total amount of items the player stole, will be used for punishment and boss radius
+    /// </summary>
+    public int ItemsStolen = 0;
     
     #region Animator Related
     private Animator _animator;

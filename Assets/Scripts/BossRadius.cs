@@ -47,7 +47,7 @@ public class BossRadius : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            isPlayerInRadius = true;
+            isPlayerInRadius = false;
         }
     }
 }
