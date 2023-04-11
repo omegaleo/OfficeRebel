@@ -14,6 +14,9 @@ public static class AStar
             return new List<TilemapNode>();
         }
         
+        // Reset the cameFrom in allNodes
+        graph.ResetCameFrom();
+        
         // Add the start node to the open set
         TilemapNode startNode = graph.GetNode(start);
         openSet.Add(startNode);

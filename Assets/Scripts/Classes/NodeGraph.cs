@@ -110,4 +110,12 @@ public class NodeGraph
 
         return int.MaxValue;
     }
+
+    public void ResetCameFrom()
+    {
+        foreach (var keyValuePair in nodes)
+        {
+            keyValuePair.Value.cameFrom = null;
+        }
+    }
 }

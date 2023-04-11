@@ -7,7 +7,7 @@ using UnityEngine.WSA;
 
 public class TilemapManager : InstancedBehaviour<TilemapManager>
 {
-    public NodeGraph groundNodes;
+    public NodeGraph groundNodes => new NodeGraph(groundTilemap);
 
     [Header("Tilemaps")] 
     public Tilemap groundTilemap;
@@ -15,6 +15,5 @@ public class TilemapManager : InstancedBehaviour<TilemapManager>
     // Start is called before the first frame update
     void Start()
     {
-        groundNodes = new NodeGraph(groundTilemap);
     }
 }
