@@ -54,6 +54,16 @@ public static class MethodExtensions
             return croppedTexture;
         }
 
+        /// <summary>
+        /// Convert a given vector3 into a vector2
+        /// </summary>
+        /// <param name="vector3"></param>
+        /// <returns></returns>
+        public static Vector2 ToVector2(this Vector3 vector3)
+        {
+            return new Vector2(vector3.x, vector3.y);
+        }
+        
         public static Sprite ShiftEmployeeColors(this Sprite sprite)
         {
             var colors = new EmployeeColorShift();

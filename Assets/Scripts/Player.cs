@@ -53,7 +53,10 @@ public class Player : InstancedBehaviour<Player>
     private void OnEnable()
     {
         // Subscribe to the Action
-        GameManager.Instance.OnMove += Move;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnMove += Move;
+        }
     }
 
     private void OnDisable()
