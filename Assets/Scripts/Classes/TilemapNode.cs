@@ -10,7 +10,9 @@ public class TilemapNode
     public int hScore;
     public int fScore;
     public List<TilemapNode> neighbors;
-
+    
+    public GameObject Obstacle;
+    
     public TilemapNode(Vector2Int position)
     {
         this.position = position;

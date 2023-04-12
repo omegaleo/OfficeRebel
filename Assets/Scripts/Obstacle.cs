@@ -12,7 +12,7 @@ public class Obstacle : MonoBehaviour
     private bool _resetting = false;
 
     private SpriteRenderer _renderer;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +52,9 @@ public class Obstacle : MonoBehaviour
             {
                 _resetting = true;
                 StartCoroutine(ResetPosition());
+                
+                // Set the current position of the obstacle in the tilemap
+                TilemapManager.Instance.SetObstacleAtPosition(transform.position);
             }
         }
     }
@@ -60,6 +63,7 @@ public class Obstacle : MonoBehaviour
     {
         yield return new WaitForSeconds(_respawnTime);
         _resetting = false;
+        TilemapManager.Instance.RemoveObstacleAtPosition(transform.position);
         transform.position = _initialPosition;
     }
 }
