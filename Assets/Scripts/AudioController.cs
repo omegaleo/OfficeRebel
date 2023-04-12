@@ -10,8 +10,8 @@ public class AudioController : InstancedBehaviour<AudioController>
     [SerializeField] private List<VoiceLine> _voiceLines = new List<VoiceLine>();
     [SerializeField] private List<SoundEffect> _soundEffects = new List<SoundEffect>();
 
-    [SerializeField] private float _sfxVolume = 0.5f; 
-    [SerializeField] private float _voiceVolume = 0.5f; 
+    [SerializeField] [Range(0f,1f)] private float _sfxVolume = 0.5f; 
+    [SerializeField] [Range(0f,1f)] private float _voiceVolume = 0.5f; 
     
     private AudioSource _musicSource;
 

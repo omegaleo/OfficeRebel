@@ -1,26 +1,61 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Helpers;
 using UnityEngine;
 
-public class BossRadius : MonoBehaviour
+public class BossRadius : InstancedBehaviour<BossRadius>
 {
     public bool isPlayerInRadius;
 
     private CircleCollider2D _collider;
-    private RectTransform _transform;
+    private SpriteRenderer _renderer;
 
+    private const float BASE_RADIUS = 3f;
+    
     private void Start()
     {
         _collider = GetComponent<CircleCollider2D>();
-        _transform = GetComponent<RectTransform>();
+        _renderer = GetComponent<SpriteRenderer>();
+        SetRadius();
     }
 
-    public void SetRadius(Vector3 radius)
+    public void SetRadius()
     {
-        // When suspicion is higher
-        _transform.localScale = radius;
+        var radius = CalculateBossRadius();
+
+        transform.localScale = new Vector3(radius, radius);
+
+        var color = Color.yellow;
+        switch (GameManager.Instance.Suspicion)
+        {
+            case >= 8:
+                color = Color.red;
+                break;
+            case >= 5:
+                ColorUtility.TryParseHtmlString("#eb8500", out color);
+                break;
+            default:
+                color = Color.yellow;
+                break;
+        }
+
+        color.a = 0.25f;
+
+        _renderer.color = color;
     }
+
+    private float CalculateBossRadius()
+    {
+        int itemsStolen = Player.Instance.ItemsStolen;
+        float suspicionMultiplier = GameManager.Instance.Suspicion / 10f;
+        float itemsMultiplier = itemsStolen * 0.05f;
+        float radius = BASE_RADIUS + (itemsMultiplier * suspicionMultiplier);
+        return Mathf.Clamp(radius, BASE_RADIUS, 15f);
+    }
+    
+    /*private float CalculateBossRadius() =>
+        3f + ((Player.Instance.ItemsStolen * 0.05f) * (GameManager.Instance.Suspicion * 0.15f));*/
 
     public void DisableRadius(float timeoutInSeconds = 30f)
     {
