@@ -38,6 +38,11 @@ public static class AStar
             openSet.Remove(currentNode);
             closedSet.Add(currentNode);
 
+            /*if (TilemapManager.Instance.IsObjectAtPosition(currentNode?.position ?? Vector2Int.zero))
+            {
+                return null;
+            }*/
+            
             // If we have found the end node, reconstruct the path and return it
             if (currentNode?.position == end)
             {

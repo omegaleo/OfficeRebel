@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Helpers;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.WSA;
 
@@ -11,9 +13,30 @@ public class TilemapManager : InstancedBehaviour<TilemapManager>
 
     [Header("Tilemaps")] 
     public Tilemap groundTilemap;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    public List<Vector2Int> ObstaclePositions;
+
+    public TilemapNode GetNodeAtPosition(Vector3 pos)
     {
+        var targetPos = (Vector2Int)groundTilemap.WorldToCell(pos);
+
+        return groundNodes.GetNode(targetPos);
     }
+
+    public void SetObstacleAtPosition(Vector3 pos)
+    {
+        ObstaclePositions.Add((Vector2Int)groundTilemap.WorldToCell(pos));
+    }
+
+    public void RemoveObstacleAtPosition(Vector3 pos)
+    {
+        var targetPos = (Vector2Int)groundTilemap.WorldToCell(pos);
+
+        if (IsObjectAtPosition(targetPos))
+        {
+            ObstaclePositions.RemoveAll(x => x == targetPos);
+        }
+    }
+
+    public bool IsObjectAtPosition(Vector2Int pos) => ObstaclePositions.Any(x => x == pos);
 }
