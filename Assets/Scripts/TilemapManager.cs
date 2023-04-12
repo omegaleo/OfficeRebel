@@ -34,7 +34,7 @@ public class TilemapManager : InstancedBehaviour<TilemapManager>
 
         if (IsObjectAtPosition(targetPos))
         {
-            ObstaclePositions.Remove(targetPos);
+            ObstaclePositions.RemoveAll(x => x == targetPos);
         }
     }
 
