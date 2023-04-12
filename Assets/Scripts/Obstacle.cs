@@ -12,6 +12,7 @@ public class Obstacle : MonoBehaviour
     private bool _resetting = false;
 
     private SpriteRenderer _renderer;
+    private Collider2D _collider;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class Obstacle : MonoBehaviour
         _initialPosition = transform.position;
 
         _renderer = GetComponent<SpriteRenderer>();
+        _collider = GetComponent<Collider2D>();
         
         GameManager.Instance.OnMouseMove += OnMouseMove;
     }
@@ -34,22 +36,38 @@ public class Obstacle : MonoBehaviour
 
         var mouseOver = (distance >= -0.5f && distance <= 0.5f);
 
-        if (mouseOver && GameManager.Instance.IsInteracting)
+        if ((mouseOver || _moving) && GameManager.Instance.IsInteracting)
         {
             _renderer.color = Color.yellow;
             transform.position = mousePosInWorld;
 
+            if (_collider != null)
+            {
+                _collider.isTrigger = true;
+            }
+            
             if (_resetting)
             {
                 _resetting = false;
                 StopAllCoroutines();
             }
+
+            _moving = true;
         }
-        else
+        else if (!GameManager.Instance.IsInteracting && _moving)
         {
             _renderer.color = Color.white;
+            _moving = false;
+            
+            if (_collider != null)
+            {
+                _collider.isTrigger = false;
+            }
+            
             if (transform.position.ToVector2() != _initialPosition && !_resetting)
             {
+                AudioController.Instance.PlaySoundEffect(SoundEffectType.PlaceBlock);
+                
                 _resetting = true;
                 StartCoroutine(ResetPosition());
                 
@@ -65,5 +83,6 @@ public class Obstacle : MonoBehaviour
         _resetting = false;
         TilemapManager.Instance.RemoveObstacleAtPosition(transform.position);
         transform.position = _initialPosition;
+        AudioController.Instance.PlaySoundEffect(SoundEffectType.PlaceBlock);
     }
 }

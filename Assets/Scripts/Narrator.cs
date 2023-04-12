@@ -9,6 +9,26 @@ public class Narrator : MonoBehaviour
     {
         // We want to listen for mouse position to know if it's over our Narrator
         GameManager.Instance.OnMouseMove += MouseMove;
+        
+        // We also want to listen for when a player has stolen an item
+        Player.Instance.StoleItem += OnItemStolen;
+    }
+
+    private void OnItemStolen()
+    {
+        if (Player.Instance.ItemsStolen % 2 == 0)
+        {
+            // Every 2 items we increase the suspicion
+            GameManager.Instance.Suspicion++;
+            
+            // Call for voice line regarding the boss being warned
+            AudioController.Instance.PlayVoiceLine(VoiceLineType.Warned);
+        }
+        else
+        {
+            // Call for voice line about warning the boss
+            AudioController.Instance.PlayVoiceLine(VoiceLineType.Warning);
+        }
     }
 
     private void MouseMove(Vector2 pos)
