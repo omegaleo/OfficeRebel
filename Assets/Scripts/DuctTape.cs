@@ -1,18 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class Obstacle : MonoBehaviour
+public class DuctTape : MonoBehaviour
 {
     [SerializeField] private Vector2 _initialPosition = Vector2.zero;
-    [SerializeField] [Tooltip("Time in seconds until the obstacle goes back to it's original position")] private float _respawnTime = 20f;
-
+    [SerializeField] private float _respawnTime = 60f;
     private bool _moving = false;
     private bool _resetting = false;
 
     private SpriteRenderer _renderer;
-    private Collider2D _collider;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +17,14 @@ public class Obstacle : MonoBehaviour
         _initialPosition = transform.position;
 
         _renderer = GetComponent<SpriteRenderer>();
-        _collider = GetComponent<Collider2D>();
         
         GameManager.Instance.OnMouseMove += OnMouseMove;
     }
 
     private void OnMouseMove(Vector2 pos)
     {
+        if (!_renderer.enabled) return;
+        
         // Get the mouse's position in our scene
         var mousePosInWorld = Camera.main.ScreenToWorldPoint(pos);
         mousePosInWorld.z = transform.position.z;
@@ -41,11 +39,6 @@ public class Obstacle : MonoBehaviour
             _renderer.color = Color.yellow;
             transform.position = mousePosInWorld;
 
-            if (_collider != null)
-            {
-                _collider.isTrigger = true;
-            }
-            
             if (_resetting)
             {
                 _resetting = false;
@@ -58,32 +51,25 @@ public class Obstacle : MonoBehaviour
         {
             _renderer.color = Color.white;
             _moving = false;
-            
-            if (_collider != null)
-            {
-                _collider.isTrigger = false;
-            }
-            
+
             if (transform.position.ToVector2() != _initialPosition && !_resetting)
             {
-                AudioController.Instance.PlaySoundEffect(SoundEffectType.PlaceBlock);
-                AudioController.Instance.PlayVoiceLine(VoiceLineType.RuleBreak);
+                var distanceToNarrator = Vector3.Distance(transform.position, Narrator.Instance.transform.position);
+
+                if (distanceToNarrator >= -0.5f && distanceToNarrator <= 0.5f)
+                {
+                    Narrator.Instance.DuctTape();
+                    _renderer.enabled = false;
+                }
                 
-                _resetting = true;
-                StartCoroutine(ResetPosition());
-                
-                // Set the current position of the obstacle in the tilemap
-                TilemapManager.Instance.SetObstacleAtPosition(transform.position);
+                transform.position = _initialPosition;
             }
         }
     }
 
-    private IEnumerator ResetPosition()
+    private IEnumerator Respawn()
     {
         yield return new WaitForSeconds(_respawnTime);
-        _resetting = false;
-        TilemapManager.Instance.RemoveObstacleAtPosition(transform.position);
-        transform.position = _initialPosition;
-        AudioController.Instance.PlaySoundEffect(SoundEffectType.PlaceBlock);
+        _renderer.enabled = true;
     }
 }

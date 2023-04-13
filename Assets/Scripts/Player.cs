@@ -23,6 +23,8 @@ public class Player : InstancedBehaviour<Player>
     /// Total amount of items the player stole, will be used for punishment and boss radius
     /// </summary>
     public int ItemsStolen = 0;
+
+    public Action StoleItem;
     
     #region Animator Related
     private Animator _animator;

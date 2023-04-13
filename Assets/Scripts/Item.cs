@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -59,19 +60,31 @@ public class Item : MonoBehaviour
                 if (Boss.Instance.IsPlayerInRadius)
                 {
                     Debug.Log("Player was caught stealing");
+                    // TODO: Implement rest of logic here, do we want instant game over or give warning slips to player?
                 }
                 else
                 {
                     Player.Instance.Money += value;
                     Player.Instance.ItemsStolen++;
+
+                    if (Player.Instance.StoleItem.GetInvocationList().Any())
+                    {
+                        Player.Instance.StoleItem.Invoke();
+                    }
+                    
                     _renderer.enabled = false;
                     StartCoroutine(RespawnItem());
                 }
             }
             else
             {
-                Debug.Log("Player needs to get closer");
+                Debug.Log("Player needs to get closer"); // TODO: Replace this with a message box saying that the player needs to get closer
+                AudioController.Instance.PlaySoundEffect(SoundEffectType.Error);
             }
+        }
+        else if (!_renderer.enabled)
+        {
+            _mouseOver = false;
         }
     }
 
