@@ -245,6 +245,25 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: e6cd5b99b7edaf0438678f479466e62c, type: 3}
   - Type: 1
     Clip: {fileID: 8300000, guid: 1ea5dc824bacbed499d0a012620256a5, type: 3}
+  _soundtrack:
+  - SongName: MainTheme_1
+    Intro: {fileID: 8300000, guid: b1781d9f393253442b346bdc483acc83, type: 3}
+    MainParts:
+    - {fileID: 8300000, guid: dc1e41496083b304fbf39c9805527e9d, type: 3}
+    - {fileID: 8300000, guid: 15cd1b63042a7ee43a7f0c3356898f55, type: 3}
+    Connections:
+    - {fileID: 8300000, guid: 06a9b13aa2648a548be12c2c1ac8253f, type: 3}
+    - {fileID: 8300000, guid: 570df094575631948a123b4ee6192019, type: 3}
+    Outro: {fileID: 8300000, guid: 605424f0d6b24fb49bcdc8d69eceebe2, type: 3}
+  - SongName: MainTheme_2
+    Intro: {fileID: 8300000, guid: cf0971197c722fd44b830468959a5837, type: 3}
+    MainParts:
+    - {fileID: 8300000, guid: 64ab2802980b60b46838583c48f8dafe, type: 3}
+    - {fileID: 8300000, guid: 33074f0725621b84c979f572bf7921b0, type: 3}
+    Connections:
+    - {fileID: 8300000, guid: f38c904a2fa9e46478fa415608440979, type: 3}
+    - {fileID: 8300000, guid: 18b5a3744fd417b4db81b4244ee2851e, type: 3}
+    Outro: {fileID: 8300000, guid: 878e928ec44fdf9438b499664b2b6578, type: 3}
   _sfxVolume: 0.5
   _voiceVolume: 0.5
 --- !u!82 &1858121809523497592

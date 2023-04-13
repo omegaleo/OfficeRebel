@@ -9,18 +9,51 @@ public class AudioController : InstancedBehaviour<AudioController>
 {
     [SerializeField] private List<VoiceLine> _voiceLines = new List<VoiceLine>();
     [SerializeField] private List<SoundEffect> _soundEffects = new List<SoundEffect>();
+    [SerializeField] private List<Song> _soundtrack = new List<Song>();
 
     [SerializeField] [Range(0f,1f)] private float _sfxVolume = 0.5f; 
     [SerializeField] [Range(0f,1f)] private float _voiceVolume = 0.5f; 
     
     private AudioSource _musicSource;
 
+    private Song _currentSong;
+
+    private Coroutine _currentLoop = null;
+    
     private void Start()
     {
         // Going to be necessary when we implement the Options menu and need to adjust music volume
         _musicSource = GetComponent<AudioSource>();
+
+        NextSong();
     }
 
+    private IEnumerator MusicLoop()
+    {
+        while (_musicSource.enabled)
+        {
+            yield return new WaitForSeconds(1f);
+
+            if (!_musicSource.isPlaying)
+            {
+                _musicSource.clip = _currentSong.Next();
+                _musicSource.Play();
+            }
+        }
+    }
+
+    public void NextSong()
+    {
+        if (_currentLoop != null)
+        {
+            StopCoroutine(_currentLoop);
+        }
+        
+        _currentSong = _soundtrack.Where(x => x != _currentSong).ToList().Random();
+
+        _currentLoop = StartCoroutine(MusicLoop());
+    }
+    
     public void PlaySoundEffect(SoundEffectType type)
     {
         var sfxSource = gameObject.AddComponent<AudioSource>();
