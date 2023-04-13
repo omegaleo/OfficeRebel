@@ -23,18 +23,31 @@ public class Boss : InstancedBehaviour<Boss>
     {
         while (_moving)
         {
-            // Move the NPC along the path
-            if (_path?.Count > 0)
+            if (_path != null)
             {
-                TilemapNode nextNode = _path.First();
-                transform.position = new Vector3(nextNode.position.x, nextNode.position.y, transform.position.z);
-                _currentPosition = (Vector2Int)TilemapManager.Instance.groundTilemap.WorldToCell(transform.position);
-                
-                _path.RemoveAt(0);
-            }
+                // Move the NPC along the path
+                if (_path?.Count > 0)
+                {
+                    TilemapNode nextNode = _path.First();
 
-            var distance = Vector2.Distance(transform.position, _target.transform.position);
-            if (distance >= -1f && distance<= 1f)
+                    while (TilemapManager.Instance.IsObjectAtPosition(nextNode.position))
+                    {
+                        yield return new WaitForSeconds(1f);
+                    }
+                    
+                    transform.position = new Vector3(nextNode.position.x, nextNode.position.y, transform.position.z);
+                    _currentPosition = (Vector2Int)TilemapManager.Instance.groundTilemap.WorldToCell(transform.position);
+                
+                    _path.RemoveAt(0);
+                }
+
+                var distance = Vector2.Distance(transform.position, _target.transform.position);
+                if (distance >= -1f && distance<= 1f)
+                {
+                    yield return SetTargetPosition();
+                }
+            }
+            else
             {
                 yield return SetTargetPosition();
             }

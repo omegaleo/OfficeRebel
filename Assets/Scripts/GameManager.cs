@@ -84,5 +84,26 @@ public class GameManager : InstancedBehaviour<GameManager>
             _prevMousePos = position;
         }
     }
+
+    public Action OnInteract;
+    /// <summary>
+    /// Variable that will be used to detect if we're dragging an object
+    /// </summary>
+    public bool IsInteracting;
+    
+    public void OnInteractDown(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+        {
+            // Do we have any class listening to the OnInteract action?
+            if (OnInteract.GetInvocationList().Any())
+            {
+                // Invoke the action to all classes listening to it
+                OnInteract.Invoke();
+            }
+        }
+
+        IsInteracting = !value.canceled;
+    }
     #endregion
 }
