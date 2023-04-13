@@ -40,6 +40,8 @@ public class AudioController : InstancedBehaviour<AudioController>
     
     public void PlayVoiceLine(VoiceLineType type)
     {
+        if (Narrator.Instance.IsDuctTaped) return;
+        
         var voiceSource = gameObject.AddComponent<AudioSource>();
         voiceSource.volume = _voiceVolume;
         voiceSource.loop = false;
