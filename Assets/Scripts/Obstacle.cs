@@ -67,6 +67,7 @@ public class Obstacle : MonoBehaviour
             if (transform.position.ToVector2() != _initialPosition && !_resetting)
             {
                 AudioController.Instance.PlaySoundEffect(SoundEffectType.PlaceBlock);
+                AudioController.Instance.PlayVoiceLine(VoiceLineType.RuleBreak);
                 
                 _resetting = true;
                 StartCoroutine(ResetPosition());

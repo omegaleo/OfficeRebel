@@ -1,7 +1,8 @@
 public enum VoiceLineType
 {
     Warning,
-    Warned
+    Warned,
+    RuleBreak // This is especially for when a game rule is broken, i.e. when a block is dragged and dropped
 }
 
 public enum SoundEffectType
