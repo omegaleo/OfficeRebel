@@ -60,6 +60,7 @@ public class DuctTape : MonoBehaviour
                 {
                     Narrator.Instance.DuctTape();
                     _renderer.enabled = false;
+                    StartCoroutine(Respawn());
                 }
                 
                 transform.position = _initialPosition;

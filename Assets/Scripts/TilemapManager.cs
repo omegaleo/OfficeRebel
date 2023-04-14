@@ -5,7 +5,6 @@ using Helpers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
-using UnityEngine.WSA;
 
 public class TilemapManager : InstancedBehaviour<TilemapManager>
 {
