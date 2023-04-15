@@ -79,8 +79,7 @@ public class Item : MonoBehaviour
             {
                 if (Boss.Instance.IsPlayerInRadius)
                 {
-                    Debug.Log("Player was caught stealing");
-                    // TODO: Implement rest of logic here, do we want instant game over or give warning slips to player?
+                    HUDManager.Instance.GameOver();
                 }
                 else
                 {
@@ -98,7 +97,6 @@ public class Item : MonoBehaviour
             }
             else
             {
-                Debug.Log("Player needs to get closer"); // TODO: Replace this with a message box saying that the player needs to get closer
                 AudioController.Instance.PlaySoundEffect(SoundEffectType.Error);
             }
         }

@@ -1343,6 +1343,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ff9b7492-4719-4258-a74a-28b20036deb4
     m_ActionName: Player/Options[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7284561589083422526}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnAnyKeyDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 610dfc6e-884f-4ca9-aeb4-40a1131d5e82
+    m_ActionName: Player/AnyKey[/Keyboard/anyKey,/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

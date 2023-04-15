@@ -121,10 +121,30 @@ public class GameManager : InstancedBehaviour<GameManager>
             }
         }
     }
+    
+    public Action OnAnyKey;
+
+    public void OnAnyKeyDown(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+        {
+            // Do we have any class listening to the OnAnyKey action?
+            if (OnAnyKey.GetInvocationList().Any())
+            {
+                // Invoke the action to all classes listening to it
+                OnAnyKey.Invoke();
+            }
+        }
+    }
     #endregion
 
     public void RestartGame()
     {
+        OnSuspicionIncreased = null;
+        OnInteract = null;
+        OnMove = null;
+        OnMouseMove = null;
+        
         SceneManager.LoadScene(0);
         Suspicion = 0;
         AudioController.Instance.NextSong();
