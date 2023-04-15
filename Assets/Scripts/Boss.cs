@@ -9,9 +9,13 @@ using UnityEngine.Serialization;
 public class Boss : InstancedBehaviour<Boss>
 {
     [SerializeField] private BossRadius _radius;
-
+    
     public bool IsPlayerInRadius => (_radius != null) && _radius.isPlayerInRadius;
 
+    [SerializeField] private float _bonkResetTimer = 20f;
+    
+    private bool _bonked = false;
+    
     #region PathFinding + Movement
     private GameObject _target;
     private Vector2Int _targetPosition;
@@ -19,6 +23,7 @@ public class Boss : InstancedBehaviour<Boss>
     private NodeGraph _nodeGraph;
     private List<TilemapNode> _path;
     private bool _moving;
+    
     private IEnumerator Move()
     {
         while (_moving)
@@ -30,11 +35,11 @@ public class Boss : InstancedBehaviour<Boss>
                 {
                     TilemapNode nextNode = _path.First();
 
-                    while (TilemapManager.Instance.IsObjectAtPosition(nextNode.position))
+                    while (TilemapManager.Instance.IsObjectAtPosition(nextNode.position) || _bonked)
                     {
                         yield return new WaitForSeconds(1f);
                     }
-                    
+
                     transform.position = new Vector3(nextNode.position.x, nextNode.position.y, transform.position.z);
                     _currentPosition = (Vector2Int)TilemapManager.Instance.groundTilemap.WorldToCell(transform.position);
                 
@@ -122,5 +127,18 @@ public class Boss : InstancedBehaviour<Boss>
         {
             yield return player;
         }
+    }
+
+    public void Bonk()
+    {
+        _bonked = true;
+
+        StartCoroutine(ResetBonk());
+    }
+
+    private IEnumerator ResetBonk()
+    {
+        yield return new WaitForSeconds(_bonkResetTimer);
+        _bonked = false;
     }
 }

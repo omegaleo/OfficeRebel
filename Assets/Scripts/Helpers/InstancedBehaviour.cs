@@ -22,6 +22,10 @@ namespace Helpers
                 // Declare instance
                 Instance = this as T;
             }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

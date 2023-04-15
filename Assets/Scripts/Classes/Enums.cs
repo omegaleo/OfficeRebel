@@ -9,5 +9,22 @@ public enum SoundEffectType
 {
     Steal,
     PlaceBlock,
-    Error
+    Error,
+    Bonk
+}
+
+public enum ItemType
+{
+    Stapler,
+    Notebook,
+    Mouse,
+    Mug,
+    Chair,
+    Printer,
+    Laptop,
+    Calculator,
+    Briefcase,
+    Mousepad,
+    Headphones,
+    Keyboard
 }

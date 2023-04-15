@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] [Tooltip("Monetary value for the item")] private float value;
-    [SerializeField] [Tooltip("Time in seconds until the item respawns after being stolen")] private float respawnTime = 10f;
-
+    [SerializeField] private ItemType _type;
+    
+    private float _value;
+    private float _respawnTime = 10f;
+    private bool _respawnAtStart = false;
+    
     private bool _mouseOver;
     private bool _canSteal;
     private SpriteRenderer _renderer;
@@ -16,11 +19,28 @@ public class Item : MonoBehaviour
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
+
+        var item = GameManager.Instance.ItemAssociations.FirstOrDefault(x => x.Type == _type);
+
+        _respawnAtStart = new List<bool>() { true, false }.Random();
+        
+        if (item != null)
+        {
+            _renderer.sprite = item.Texture;
+            _value = item.Value;
+            _respawnTime = item.RespawnTime;
+        }
+        
+        if (!_respawnAtStart)
+        {
+            _renderer.enabled = false;
+            StartCoroutine(RespawnItem());
+        }
         
         GameManager.Instance.OnInteract += OnInteract;
         GameManager.Instance.OnMouseMove += OnMouseMove;
     }
-
+    
     private void OnMouseMove(Vector2 pos)
     {
         if (!_renderer.enabled) return;
@@ -59,12 +79,11 @@ public class Item : MonoBehaviour
             {
                 if (Boss.Instance.IsPlayerInRadius)
                 {
-                    Debug.Log("Player was caught stealing");
-                    // TODO: Implement rest of logic here, do we want instant game over or give warning slips to player?
+                    HUDManager.Instance.GameOver();
                 }
                 else
                 {
-                    Player.Instance.Money += value;
+                    Player.Instance.Money += _value;
                     Player.Instance.ItemsStolen++;
 
                     if (Player.Instance.StoleItem.GetInvocationList().Any())
@@ -78,7 +97,6 @@ public class Item : MonoBehaviour
             }
             else
             {
-                Debug.Log("Player needs to get closer"); // TODO: Replace this with a message box saying that the player needs to get closer
                 AudioController.Instance.PlaySoundEffect(SoundEffectType.Error);
             }
         }
@@ -90,7 +108,7 @@ public class Item : MonoBehaviour
 
     private IEnumerator RespawnItem()
     {
-        yield return new WaitForSeconds(respawnTime);
+        yield return new WaitForSeconds(_respawnTime);
         _renderer.enabled = true;
     }
 }

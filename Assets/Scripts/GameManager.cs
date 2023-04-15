@@ -5,6 +5,7 @@ using System.Linq;
 using Helpers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : InstancedBehaviour<GameManager>
 {
@@ -105,5 +106,69 @@ public class GameManager : InstancedBehaviour<GameManager>
 
         IsInteracting = !value.canceled;
     }
+    
+    public Action OnOptions;
+
+    public void OnOptionsDown(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+        {
+            // Do we have any class listening to the OnInteract action?
+            if (OnOptions.GetInvocationList().Any())
+            {
+                // Invoke the action to all classes listening to it
+                OnOptions.Invoke();
+            }
+        }
+    }
+    
+    public Action OnAnyKey;
+
+    public void OnAnyKeyDown(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+        {
+            // Do we have any class listening to the OnAnyKey action?
+            if (OnAnyKey.GetInvocationList().Any())
+            {
+                // Invoke the action to all classes listening to it
+                OnAnyKey.Invoke();
+            }
+        }
+    }
+    #endregion
+
+    public void RestartGame()
+    {
+        OnSuspicionIncreased = null;
+        OnInteract = null;
+        OnMove = null;
+        OnMouseMove = null;
+        OnAnyKey = null;
+        
+        SceneManager.LoadScene(0);
+        Suspicion = 0;
+        AudioController.Instance.NextSong();
+    }
+
+    public Action OnSuspicionIncreased;
+
+    public void IncreaseSuspicion()
+    {
+        Suspicion++;
+
+        // Set the BossRadius
+        BossRadius.Instance.SetRadius();
+        
+        if (OnSuspicionIncreased.GetInvocationList().Any())
+        {
+            OnSuspicionIncreased.Invoke();
+        }
+    }
+    
+    #region ItemRelated
+
+    public List<ItemAssociation> ItemAssociations = new List<ItemAssociation>();
+
     #endregion
 }

@@ -35,8 +35,11 @@ public class BossRadius : InstancedBehaviour<BossRadius>
             case >= 5:
                 ColorUtility.TryParseHtmlString("#eb8500", out color);
                 break;
-            default:
+            case >= 3:
                 color = Color.yellow;
+                break;
+            default:
+                color = Color.green;
                 break;
         }
 

@@ -56,10 +56,11 @@ public class DuctTape : MonoBehaviour
             {
                 var distanceToNarrator = Vector3.Distance(transform.position, Narrator.Instance.transform.position);
 
-                if (distanceToNarrator >= -0.5f && distanceToNarrator <= 0.5f)
+                if (distanceToNarrator is >= -0.5f and <= 0.5f)
                 {
                     Narrator.Instance.DuctTape();
                     _renderer.enabled = false;
+                    StartCoroutine(Respawn());
                 }
                 
                 transform.position = _initialPosition;

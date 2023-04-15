@@ -36,13 +36,10 @@ public class Narrator : InstancedBehaviour<Narrator>
         if (Player.Instance.ItemsStolen % 2 == 0)
         {
             // Every 2 items we increase the suspicion
-            GameManager.Instance.Suspicion++;
+            GameManager.Instance.IncreaseSuspicion();
             
             // Call for voice line regarding the boss being warned
             AudioController.Instance.PlayVoiceLine(VoiceLineType.Warned);
-
-            // Set the BossRadius
-            BossRadius.Instance.SetRadius();
         }
         else
         {
