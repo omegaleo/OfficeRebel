@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Helpers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AudioController : InstancedBehaviour<AudioController>
 {
@@ -11,8 +12,8 @@ public class AudioController : InstancedBehaviour<AudioController>
     [SerializeField] private List<SoundEffect> _soundEffects = new List<SoundEffect>();
     [SerializeField] private List<Song> _soundtrack = new List<Song>();
 
-    [SerializeField] [Range(0f,1f)] private float _sfxVolume = 0.5f; 
-    [SerializeField] [Range(0f,1f)] private float _voiceVolume = 0.5f; 
+    [Range(0f,1f)] public float SfxVolume = 0.5f; 
+    [Range(0f,1f)] public float VoiceVolume = 0.5f; 
     
     private AudioSource _musicSource;
 
@@ -24,7 +25,6 @@ public class AudioController : InstancedBehaviour<AudioController>
     {
         // Going to be necessary when we implement the Options menu and need to adjust music volume
         _musicSource = GetComponent<AudioSource>();
-
         NextSong();
     }
 
@@ -57,7 +57,7 @@ public class AudioController : InstancedBehaviour<AudioController>
     public void PlaySoundEffect(SoundEffectType type)
     {
         var sfxSource = gameObject.AddComponent<AudioSource>();
-        sfxSource.volume = _sfxVolume;
+        sfxSource.volume = SfxVolume;
         sfxSource.loop = false;
 
         var sfx = _soundEffects.Where(x => x.Type == type).ToList().Random();
@@ -76,7 +76,7 @@ public class AudioController : InstancedBehaviour<AudioController>
         if (Narrator.Instance.IsDuctTaped) return;
         
         var voiceSource = gameObject.AddComponent<AudioSource>();
-        voiceSource.volume = _voiceVolume;
+        voiceSource.volume = VoiceVolume;
         voiceSource.loop = false;
 
         var voiceLine = _voiceLines.Where(x => x.Type == type).ToList().Random();
@@ -105,5 +105,5 @@ public class AudioController : InstancedBehaviour<AudioController>
         _musicSource.volume = Mathf.Clamp(volume, 0f, 1f);
     }
 
-    public float GetMusicVolume() => _musicSource.volume;
+    public float GetMusicVolume() => (_musicSource != null) ? _musicSource.volume : 1f;
 }

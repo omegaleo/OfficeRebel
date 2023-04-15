@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,17 +11,21 @@ public class HUDManager : MonoBehaviour
 
     [SerializeField] WorkDayTimer timer;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-     
+        Player.Instance.StoleItem += OnItemStolen;
+        UpdatePoints();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnItemStolen()
     {
-        timerText.text = timer.FormatTimeDisplay();
-        pointsText.text = "Value: " + Player.Instance.Money.ToString() + "\n" +
-                          "Stolen: " + Player.Instance.ItemsStolen.ToString();
+        //timerText.text = timer.FormatTimeDisplay();
+        UpdatePoints();
+    }
+
+    private void UpdatePoints()
+    {
+        pointsText.text =
+            $@"Money: ${Player.Instance.Money}{Environment.NewLine}Items Stolen: {Player.Instance.ItemsStolen.ToString()}";
     }
 }

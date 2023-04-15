@@ -106,10 +106,26 @@ public class GameManager : InstancedBehaviour<GameManager>
 
         IsInteracting = !value.canceled;
     }
+    
+    public Action OnOptions;
+
+    public void OnOptionsDown(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+        {
+            // Do we have any class listening to the OnInteract action?
+            if (OnOptions.GetInvocationList().Any())
+            {
+                // Invoke the action to all classes listening to it
+                OnOptions.Invoke();
+            }
+        }
+    }
     #endregion
 
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+        AudioController.Instance.NextSong();
     }
 }
