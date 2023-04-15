@@ -5,6 +5,7 @@ using System.Linq;
 using Helpers;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : InstancedBehaviour<GameManager>
 {
@@ -106,4 +107,9 @@ public class GameManager : InstancedBehaviour<GameManager>
         IsInteracting = !value.canceled;
     }
     #endregion
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

@@ -99,4 +99,11 @@ public class AudioController : InstancedBehaviour<AudioController>
         
         Destroy(source);
     }
+    
+    public void SetMusicVolume(float volume)
+    {
+        _musicSource.volume = Mathf.Clamp(volume, 0f, 1f);
+    }
+
+    public float GetMusicVolume() => _musicSource.volume;
 }
