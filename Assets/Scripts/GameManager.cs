@@ -126,6 +126,19 @@ public class GameManager : InstancedBehaviour<GameManager>
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+        Suspicion = 0;
         AudioController.Instance.NextSong();
+    }
+
+    public Action OnSuspicionIncreased;
+
+    public void IncreaseSuspicion()
+    {
+        Suspicion++;
+
+        if (OnSuspicionIncreased.GetInvocationList().Any())
+        {
+            OnSuspicionIncreased.Invoke();
+        }
     }
 }
