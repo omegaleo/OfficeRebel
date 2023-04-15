@@ -245,6 +245,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: e6cd5b99b7edaf0438678f479466e62c, type: 3}
   - Type: 1
     Clip: {fileID: 8300000, guid: 1ea5dc824bacbed499d0a012620256a5, type: 3}
+  - Type: 3
+    Clip: {fileID: 8300000, guid: 09afa2c4b4162014a845de82f1bcb6ac, type: 3}
   _soundtrack:
   - SongName: MainTheme_1
     Intro: {fileID: 8300000, guid: b1781d9f393253442b346bdc483acc83, type: 3}

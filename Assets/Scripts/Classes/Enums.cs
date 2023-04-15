@@ -9,5 +9,6 @@ public enum SoundEffectType
 {
     Steal,
     PlaceBlock,
-    Error
+    Error,
+    Bonk
 }

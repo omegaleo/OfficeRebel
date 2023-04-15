@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
+  Money: 0
+  ItemsStolen: 0
 --- !u!212 &7620227357178313910
 SpriteRenderer:
   m_ObjectHideFlags: 0
