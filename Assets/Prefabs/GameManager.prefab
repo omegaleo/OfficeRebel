@@ -1177,6 +1177,43 @@ MonoBehaviour:
   - {r: 0.72156864, g: 0.70980394, b: 0.7254902, a: 1}
   - {r: 0.40784314, g: 0.7607843, b: 0.827451, a: 1}
   IsInteracting: 0
+  ItemAssociations:
+  - Type: 0
+    Value: 5
+    RespawnTime: 10
+    Texture: {fileID: 1598752601, guid: ec3cd65f08a739d418c8a7039c766706, type: 3}
+  - Type: 1
+    Value: 10
+    RespawnTime: 15
+    Texture: {fileID: 1468522207, guid: ec3cd65f08a739d418c8a7039c766706, type: 3}
+  - Type: 2
+    Value: 15
+    RespawnTime: 20
+    Texture: {fileID: 1065472854, guid: ec3cd65f08a739d418c8a7039c766706, type: 3}
+  - Type: 3
+    Value: 7
+    RespawnTime: 10
+    Texture: {fileID: -1331555960, guid: ec3cd65f08a739d418c8a7039c766706, type: 3}
+  - Type: 5
+    Value: 150
+    RespawnTime: 90
+    Texture: {fileID: 1854530797, guid: ec3cd65f08a739d418c8a7039c766706, type: 3}
+  - Type: 6
+    Value: 500
+    RespawnTime: 180
+    Texture: {fileID: -977638350, guid: ec3cd65f08a739d418c8a7039c766706, type: 3}
+  - Type: 7
+    Value: 20
+    RespawnTime: 300
+    Texture: {fileID: -1047907023, guid: ec3cd65f08a739d418c8a7039c766706, type: 3}
+  - Type: 8
+    Value: 50
+    RespawnTime: 900
+    Texture: {fileID: -175795684, guid: ec3cd65f08a739d418c8a7039c766706, type: 3}
+  - Type: 11
+    Value: 25
+    RespawnTime: 420
+    Texture: {fileID: 2114578204, guid: ec3cd65f08a739d418c8a7039c766706, type: 3}
 --- !u!114 &3440990123243053601
 MonoBehaviour:
   m_ObjectHideFlags: 0

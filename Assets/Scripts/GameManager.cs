@@ -136,9 +136,18 @@ public class GameManager : InstancedBehaviour<GameManager>
     {
         Suspicion++;
 
+        // Set the BossRadius
+        BossRadius.Instance.SetRadius();
+        
         if (OnSuspicionIncreased.GetInvocationList().Any())
         {
             OnSuspicionIncreased.Invoke();
         }
     }
+    
+    #region ItemRelated
+
+    public List<ItemAssociation> ItemAssociations = new List<ItemAssociation>();
+
+    #endregion
 }

@@ -40,9 +40,6 @@ public class Narrator : InstancedBehaviour<Narrator>
             
             // Call for voice line regarding the boss being warned
             AudioController.Instance.PlayVoiceLine(VoiceLineType.Warned);
-
-            // Set the BossRadius
-            BossRadius.Instance.SetRadius();
         }
         else
         {
