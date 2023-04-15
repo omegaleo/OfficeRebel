@@ -20,6 +20,8 @@ public class AudioController : InstancedBehaviour<AudioController>
     private Song _currentSong;
 
     private Coroutine _currentLoop = null;
+
+    private bool _voicePlaying;
     
     private void Start()
     {
@@ -73,8 +75,8 @@ public class AudioController : InstancedBehaviour<AudioController>
     
     public void PlayVoiceLine(VoiceLineType type)
     {
-        if (Narrator.Instance.IsDuctTaped) return;
-        
+        if (Narrator.Instance.IsDuctTaped || _voicePlaying) return;
+
         var voiceSource = gameObject.AddComponent<AudioSource>();
         voiceSource.volume = VoiceVolume;
         voiceSource.loop = false;
@@ -83,6 +85,7 @@ public class AudioController : InstancedBehaviour<AudioController>
 
         if (voiceLine != null)
         {
+            _voicePlaying = true;
             voiceSource.clip = voiceLine.Clip;
             voiceSource.Play();
         }
@@ -96,6 +99,8 @@ public class AudioController : InstancedBehaviour<AudioController>
         {
             yield return new WaitForSeconds(1f);
         }
+
+        _voicePlaying = false;
         
         Destroy(source);
     }

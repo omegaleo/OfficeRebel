@@ -52,7 +52,7 @@ public class BossRadius : InstancedBehaviour<BossRadius>
     {
         int itemsStolen = Player.Instance.ItemsStolen;
         float suspicionMultiplier = GameManager.Instance.Suspicion / 10f;
-        float itemsMultiplier = itemsStolen * 0.05f;
+        float itemsMultiplier = itemsStolen * 0.15f;
         float radius = BASE_RADIUS + (itemsMultiplier * suspicionMultiplier);
         return Mathf.Clamp(radius, BASE_RADIUS, 15f);
     }

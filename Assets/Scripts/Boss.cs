@@ -23,7 +23,7 @@ public class Boss : InstancedBehaviour<Boss>
     private NodeGraph _nodeGraph;
     private List<TilemapNode> _path;
     private bool _moving;
-    
+
     private IEnumerator Move()
     {
         while (_moving)
@@ -115,6 +115,11 @@ public class Boss : InstancedBehaviour<Boss>
                 // Normal chance
                 targets.AddRange(GeneratePlayerChance(1));
                 break;
+        }
+
+        if (GameManager.Instance.Suspicion < 5)
+        {
+            targets.Add(Narrator.Instance.gameObject);
         }
 
         return targets;
