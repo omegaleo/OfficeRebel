@@ -144,6 +144,7 @@ public class GameManager : InstancedBehaviour<GameManager>
         OnInteract = null;
         OnMove = null;
         OnMouseMove = null;
+        OnAnyKey = null;
         
         SceneManager.LoadScene(0);
         Suspicion = 0;

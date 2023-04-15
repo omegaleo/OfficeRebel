@@ -40,7 +40,7 @@ public class Item : MonoBehaviour
         GameManager.Instance.OnInteract += OnInteract;
         GameManager.Instance.OnMouseMove += OnMouseMove;
     }
-
+    
     private void OnMouseMove(Vector2 pos)
     {
         if (!_renderer.enabled) return;
