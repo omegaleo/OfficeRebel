@@ -47,7 +47,7 @@ public class GameManager : InstancedBehaviour<GameManager>
         var movement = value.ReadValue<Vector2>();
 
         // Do we have any class listening to the OnMove action?
-        if (OnMove.GetInvocationList().Any())
+        if (OnMove != null && OnMove.GetInvocationList().Any())
         {
             // Invoke the action to all classes listening to it
             OnMove.Invoke(movement);
@@ -76,7 +76,7 @@ public class GameManager : InstancedBehaviour<GameManager>
         if (position != _prevMousePos)
         {
             // Do we have any class listening to the OnMove action?
-            if (OnMouseMove.GetInvocationList().Any())
+            if (OnMouseMove != null && OnMouseMove.GetInvocationList().Any())
             {
                 // Invoke the action to all classes listening to it
                 OnMouseMove.Invoke(position);
@@ -97,7 +97,7 @@ public class GameManager : InstancedBehaviour<GameManager>
         if (value.performed)
         {
             // Do we have any class listening to the OnInteract action?
-            if (OnInteract.GetInvocationList().Any())
+            if (OnInteract != null && OnInteract.GetInvocationList().Any())
             {
                 // Invoke the action to all classes listening to it
                 OnInteract.Invoke();
@@ -114,7 +114,7 @@ public class GameManager : InstancedBehaviour<GameManager>
         if (value.performed)
         {
             // Do we have any class listening to the OnInteract action?
-            if (OnOptions.GetInvocationList().Any())
+            if (OnOptions != null && OnOptions.GetInvocationList().Any())
             {
                 // Invoke the action to all classes listening to it
                 OnOptions.Invoke();
@@ -129,7 +129,7 @@ public class GameManager : InstancedBehaviour<GameManager>
         if (value.performed)
         {
             // Do we have any class listening to the OnAnyKey action?
-            if (OnAnyKey.GetInvocationList().Any())
+            if (OnAnyKey != null && OnAnyKey.GetInvocationList().Any())
             {
                 // Invoke the action to all classes listening to it
                 OnAnyKey.Invoke();
