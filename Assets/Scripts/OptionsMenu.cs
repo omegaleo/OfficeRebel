@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Helpers;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionsMenu : MonoBehaviour
+public class OptionsMenu : InstancedBehaviour<OptionsMenu>
 {
     [SerializeField] private Slider _musicSlider;
     [SerializeField] private Slider _sfxSlider;

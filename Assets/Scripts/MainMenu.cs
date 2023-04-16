@@ -8,7 +8,12 @@ public class MainMenu : MonoBehaviour
     public void SwitchScene()
     {
         // Logic to switch to another scene
-        SceneManager.LoadScene("Office"); 
+        SceneManager.LoadScene(1); 
+    }
+
+    public void OpenOptionsMenu()
+    { 
+        OptionsMenu.Instance.Toggle();
     }
 
     public void QuitApplication()
